@@ -141,37 +141,118 @@ console.log(greeting); // Hello Niklas Fähnrich! How are you doing?
 Represents true or false values.
 
 ```js
-
+let isStudent = true;
+let hasTalent = false;
 ```
 
 #### Null
 
+Represents the intentional absence of any value.
+
+```js
+let noValue = null;
+```
+
 #### Undefined
 
-#### NaN
+Represents a variable tha has been declared but not assigned a value.
+
+```js
+let name;
+console.log(name); // undefined
+```
+
+#### NaN - Not a number
+
+Represents a value that is "Not a number" and is the result of an undefined or unrepresentable mathematical operation.
+
+```js
+let results = "abc" / 2; // NaN
+```
 
 ### Arithmetic Operators
 
 #### Addition
 
+```js
+let sum = 5 + 4; // 9;
+```
+
 #### Subtraction
+
+```js
+let diff = 5 - 4; // 1;
+```
 
 #### Multiplication
 
+```js
+let product = 5 * 4; // 20;
+```
+
 #### Division
+
+```js
+let result = 8 / 4; // 2;
+```
 
 #### Modulus
 
+Gives you the remainder of a division.
+
+```js
+let result = 8 % 4; // 0;
+let result1 = 8 % 3; // 2, (remainder of 8 divided by 3);
+```
+
 #### Increment
+
+```js
+let counter = 2;
+counter++;
+console.log(counter); // 3;
+```
 
 #### Decrement
 
+```js
+let counter = 2;
+counter--;
+console.log(counter); // counter = 1;
+```
+
 ### Assignment Operators
+
+It's a combination of assignment and some sort of caluculation.
 
 #### Addition Assignment
 
+```js
+let counter = 4;
+counter += 5; // equal to -> counter = counter + 5;
+console.log(counter); // 9
+```
+
 #### Subtraction Assignment
+
+```js
+let counter = 4;
+counter -= 3; // equal to -> counter = counter - 3;
+console.log(counter); // 1
+```
 
 #### Multiplication Assignment
 
+```js
+let counter = 4;
+counter *= 3; // equal to -> counter = counter * 3;
+console.log(counter); // 12
+```
+
 #### Division Assignment
+
+```js
+let counter = 4;
+counter /= 2; // equal to -> counter = counter / 2;
+console.log(counter); // 2
+```
