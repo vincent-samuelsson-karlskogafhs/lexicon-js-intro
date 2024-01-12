@@ -1,258 +1,378 @@
-## Javascript Basics - Datatypes and Variables
+## Simple handling of input from user
 
-### Comments
+### Alert
 
-Comments are used to add explanations within your code. They are ignored by the JavaScript engine.
-
-Single-line comments
+An alert is a simple dialog (modal) that displays a message to the user. It is often used to provide information or to get the user's attention. Alert pauses the executing of the current javascript file, which means we need to dismiss it before the program continues.
 
 ```js
-// This is a single-line comment
+alert("This is an alert message! Dismiss me before the program continues.");
+
+console.log("Alert is dismissed");
 ```
 
-Multi-line comments
+### Prompt
+
+The prompt dialog (modal) allows you to ask the user for input by dsiplaying a message and an included input field. It returns the text entered by the user as a string. Prompts are also blocking which means the script is paused until the prompt is completed.
 
 ```js
-/* 
-This is a mulit-line coment.
-We can write over many rows.
-*/
+// Prompt the user for the name. The answer that is returnd can be saved in a variable
+
+const nameOfUser = prompt("Please enter your name:");
+
+// Let's display the answer with an alert, with the help of sting concatenation.
+alert("Thank you " + nameOfUser + "!");
 ```
 
-### Logging to the console
+You can also use string literals inside the alert for smoother string creations.
 
-Logging to the console is used to print information to the browser console. It's helpful for debugging our code and understanding how our code is executing.
-
-It is used with this mehtod: `console.log()`.
+But what happens if we don't give the prompt an answer?
 
 ```js
-console.log("Hello from the console!"); // Prints the text in the parentheses to the console.
+const nameOfUser = prompt("Please enter your name:");
+
+// Let's say we cancel the prompt before writing an answer, what happens then?
+
+console.log(nameOfUser); // null
 ```
 
-### Variables and scoops
+The prompt always returns a value to us, either a string if we actually types something or presses ok without typing anything or null if we cancel the prompt.
 
-#### let
+FYI, everything you type as a response in a prompt will be converted to a string before it's returned.
 
-Declares a variable that can be reassigned. It has block-level scope.
+### Confirm
+
+A confirm dialog is used to ask the user for confirmatin. Usually a question or something that can be answered with yes and no. The confirm uses the options `Ok` and `Cancel` in order represent these answers. It returns a boolean, `true` if the user press `Ok` or `false` if the user press `Cancel`. Like the other methods it pauses the script until it's completed.
 
 ```js
-let number = 10;
-let name = "Niklas";
+// Ask if user is older than 20 years old
+const isOver20 = confirm("Are you over the age of 20?");
 
-let firstName; // This will create an emtpy variable that we can assign a value to later.
-
-console.log(number); // Should print 10 in the console
-console.log(name); // Niklas
-
-number = 20;
-
-console.log(number); // 20
+// Alert the answer.
+alert(`Were you older then 20? ${isOver20}`);
 ```
 
-`=` is the assignment operator for variabels.
+### Good to know about these methods.
 
-#### const
-
-Declares a constant variable whose value can not be reassigned. It also has a block-level scope.
+These methods are not hovering on their own in JavaScript, they are actually connected to something. And this something is the `BOM`. BOM stands for **Browser Object Model**. It is an object the represents the Browser and its functionality and it is utilized with the windows keyword. Like this:
 
 ```js
-const myAge = 18;
-myAge = 24; // This won't work, not allowed.
+alert("Some string");
 
-const myOtherAge; // Won't work, a const always needs value during the declaration.
+// is really like this:
+
+window.alert("...some string");
+
+// Same with the others:
+
+window.promt("...some prompt");
+window.confirm("...some confirmation text");
 ```
 
-#### var
+## If-else-statements
 
-The old way to declare variables. It has a function-level scope, which means it's available all over the place, it's hoisted to the top of the file. This is not a behaviour that we want.
+A statment is a lone of code that performs a certain action or task. It's like giving a command to a computer to do something specific.
+
+#### Declaring a variable
 
 ```js
-var address = "jsgatan 47";
+let greeting;
 ```
 
-### Data types
+Here we tell the computer to declare a variable with the name `greeting`. It's simply a container where you can store some data.
 
-#### Number
-
-Represents a numeric value like an integer or a decimal.
+##### Assigning a value to the variable
 
 ```js
-let age = 18; // Integer
-let price = 24.99; // Decimal
+greeting = "Hello there!";
 ```
 
-Decimals is written with periods and not comma.
+Now we ask the computer to assign a specific value to that variable. We are putting actual data inside the container.
 
-#### String
-
-Represents textual data enclose in quotes, and it can be single quotes or double quotes or even back ticks.
+##### Displaying the result
 
 ```js
-let firstName = "Niklas"; // A string in single quotes
-
-let lastName = "Fähnrich"; // A string in double quotes
-
-const address = `Skurupsgatan`; // A string in backticks.
-
-const fullName = firstName + lastName; // This is something called string concatenation. In This case we use existing variables.
-
-console.log(fullName); // NiklasFähnrich
-
-const description = "Hej" + " på dig!"; // Concatenation of raw strings.
-
-console.log(description); // Hej på dig!
+console.log(greeting);
 ```
 
-String that are created with backticks have some extra functionality. With backticks we are allowed to write multi-line string, and we can also inject variables in the string in a good-looking way.
+Lastly we instruct the computer to display this greeting in the console of the browser. When you run this code, you'll see `Hello there!` in the console. This is a proper statement!
+
+### Back to if-statements
+
+Here is the basic syntax of an if-statement.
 
 ```js
-const greeting = `Hello, I am
-a multi-line string, and
-I can exist on may different rows.`;
-
-// Above is a multi-line string.
+if (condition) {
+  // ... do something
+}
 ```
 
-Now, let's look at injections inside a string.
+What is a condition then? A condition is something that the computer can evaluate, but the caveat here is that it's only allowed to evaluate something to either `true` or `false`. How do we do this? We need some other tools. Say hi to `comparison operators`.
+
+#### Comparison Operators
+
+This operators are used by the computer to compare two or more values with eachother.
+
+##### `==` -> _equal to (with coercion)_
+
+Comparison between to operands, but JavaScript may try to convert one or both operands in order to make the comparison possible.
 
 ```js
-const firstName = "Niklas";
-const lastName = "Fähnrich";
+const numbersAreEqual = 5 == 5; // true, and it will be assign to the variable.
 
-const greeting =
-  "Hello " + firstName + " " + lastName + "!" + " How are you doing?";
+const numbersAreEqualAgain = 5 == "5"; // true, it's because JS converts the "5" to a number in order to make the comparison work.
 
-console.log(greeting); // Hello Niklas Fähnrich! How are you doing?
+const isEqual = 5 == 7; // false. This is obvious of course.
 ```
 
-The above is not so readable for us developers. For the end-used, it looks all nice. They see what they need to see. Let's try the same example with variable injections instead.
+##### `===` -> _equal to (strict)_
+
+Comparison between two operands, but this time it's strict. Both need to be of the same data type, otherwise it will automatically be `false`. Value AND type must be the same.
 
 ```js
-const firstName = "Niklas";
-const lastName = "Fähnrich";
+const numbersAreEqual = 5 === "5"; // false, since the data types are different.
 
-const greeting = `Hello ${firstName} ${lastName}! How are you doing?`;
+const x = 10;
+const y = 7;
 
-console.log(greeting); // Hello Niklas Fähnrich! How are you doing?
+const areTheyEqual = x === y; // false, the values or not equal but the data types are.
 ```
 
-#### Boolean
+##### `!=` -> _Not equal (with coercion)_
 
-Represents true or false values.
+Basically the opposite of _equal to_ but it's when we want to check if some operands are not equal.
+
+##### `!==` -> _Not equal (strict)_
 
 ```js
-let isStudent = true;
-let hasTalent = false;
+const name = "Niklas";
+const lastName = "Fahnrich";
+
+const isNotEqual = name !== lastName; // true.
 ```
 
-#### Null
+##### `>`, `<` -> _Greater than, Less than_
 
-Represents the intentional absence of any value.
+Sometimes we want to compare if variables (typically numbers) are greate than or less than each other. Age restriction is a good example, password lenght is another.
 
 ```js
-let noValue = null;
+let myAge = 18;
+const ageLimit = 20;
+
+let isOldEnough = myAge > ageLimit; // false
+isOldEnough = 16 < ageLimit; // true
 ```
 
-#### Undefined
+##### `>=` , `<=` -> _Greater than or equal, less than or equal_
 
-Represents a variable tha has been declared but not assigned a value.
+Works the same as above but we can check for equality as well.
+
+### Back to if-statements (again)
+
+Now we now about the comparison operators that we can use, now we can actually write a proper if-statment.
+
+Systembolaget example;
 
 ```js
-let name;
-console.log(name); // undefined
+alert("Welcome to the digital Ssytembolaget!");
+
+// Set age restriction
+const ageRestriction = 20;
+
+// Ask for the age of the customer
+const age = prompt("How old are you?");
+
+const ageAsNumber = window.parseInt(age);
+
+if (ageAsNumber >= ageRestriction) {
+  // In here is the code that runs if the condition is true
+  alert("Very good, you are most welcome to browse our wares.");
+}
 ```
 
-#### NaN - Not a number
+If-statements works by checking a certain condition if it should run the code inside the codeblock or not. Remember that it **ONLY** runs the code if the condition is true. Otherwise the code block will be completely ignored.
 
-Represents a value that is "Not a number" and is the result of an undefined or unrepresentable mathematical operation.
+### Else
+
+Else is nothing that can be used on its own, it must alwaus be used in conjunction with an if-statment. But it gives you the opportunity to something else the first condition is false.
 
 ```js
-let results = "abc" / 2; // NaN
+if (condition) {
+  // if the condition is true, we end up in here.
+  // ...code to run
+} else {
+  // We end up here if the condition is false, it's like a fallback statement
+  // ...do something else
+}
 ```
 
-### Arithmetic Operators
-
-#### Addition
+Let's take the previous example and extend it with an else statement.
 
 ```js
-let sum = 5 + 4; // 9;
+alert("Welcome to the digital Sytembolaget!");
+
+// Set age restriction
+const ageRestriction = 20;
+
+// Ask for the age of the customer
+const age = prompt("How old are you?");
+
+const ageAsNumber = window.parseInt(age);
+
+if (ageAsNumber >= ageRestriction) {
+  // In here is the code that runs if the condition is true
+  alert("Very good, you are most welcome to browse our wares.");
+} else {
+  alert("I am sorry, you shall not pass!");
+}
 ```
 
-#### Subtraction
+### Else-if
+
+Else-if is another member of the if-statement family. It's quite similar to en else but with the added functionality that it can check some other condition for us if the first condition was false. It give more opportunites to steer our program in different directions depending on the outcome.
 
 ```js
-let diff = 5 - 4; // 1;
+if (condition) {
+  // ...code to run
+} else if (anotherCondition) {
+  // ...code to run
+} else if (thirdCondition) {
+  // ...code to run
+} else {
+  // ...code to run if all conditions fails
+}
 ```
 
-#### Multiplication
+Remember, that **only one** of these codeblocks can ever run. If one condition is evaluated to true, all of the rest will be ignored.
+
+Let's do a good example of this with colors.
 
 ```js
-let product = 5 * 4; // 20;
+const age = prompt("How old are you?");
+
+const ageAsNumber = parseInt(age);
+
+if (age >= 80) {
+  alert("You are blue");
+} else if (age >= 50) {
+  alert("You are red");
+} else if (age >= 30) {
+  alert("You are yellow");
+} else if (age >= 10) {
+  alert("You are green");
+} else if (age >= 0) {
+  alert("You are brown");
+} else {
+  alert("You don't exists, you deserve no color");
+}
 ```
 
-#### Division
+This is a good example if we want to check multiple conditions one by one, but what if we want to check serveral conditions at the same time? Then we have logical operators.
+
+### Logical Operators
+
+#### `&&` = `AND`
+
+Both conditions that we check must be true, in order for the entire if statmenet to be evaluated to `true`.
 
 ```js
-let result = 8 / 4; // 2;
+const hasCertificate = true;
+let isAvailable = true;
+
+if (hasCertificate && isAvailable) {
+  console.log("Nice! We will hire you!"); // This will run since both are true.
+} else {
+  console.log("To bad, but what if we give you 100k?");
+}
+
+isAvailable = false;
+
+if (hasCertificate && isAvailable) {
+  console.log("Nice! We will hire you!");
+} else {
+  console.log("To bad, but what if we give you 100k?"); // This will run since one of them are false.
+}
 ```
 
-#### Modulus
-
-Gives you the remainder of a division.
+In this case we just looked at two conditions, but what if we have more of them?
 
 ```js
-let result = 8 % 4; // 0;
-let result1 = 8 % 3; // 2, (remainder of 8 divided by 3);
+const hasCertificate = true;
+let isAvailable = true;
+let hasFSkatt = false;
+let isOldEnough = false;
+
+if (hasCertificate && isAvailable && hasFSkatt) {
+  // ...code to run if all of them are true
+}
 ```
 
-#### Increment
+What if we have parentheses around a couple of them? They will be seen as one entity, and will be evaluated as such.
 
 ```js
-let counter = 2;
-counter++;
-console.log(counter); // 3;
+if (hasCertificate && isAvailable && hasFSkatt && isOldEnough) {
+  // ...code to run if all of them are true
+}
 ```
 
-#### Decrement
+#### `||` = `OR`
+
+When we are using this operator, only one of the conditions must be true, in order for the total condition to be evaluated to true. It doesn't matter which one obviously.
 
 ```js
-let counter = 2;
-counter--;
-console.log(counter); // counter = 1;
+const dollar = "dollar";
+const euro = "euro";
+let customerCurrency = dollar;
+
+console.log("We accept both dollars and euros");
+
+if (customerCurrency === dollar || customerCurrency === euro) {
+  console.log("Nice! Those bills looks delicious!");
+
+  // This will run since cusomterCurrency was either dollar or euro.
+}
+
+customerCurrency = "drachme";
+
+if (customerCurrency === dollar || customerCurrency === euro) {
+  console.log("Nice! Those bills looks delicious!");
+} else {
+  console.log(
+    "Oh, sorry. Are you from Ancient Greece? Drachme doesn't even exists anymore!"
+  );
+
+  // This will run since drachme is not accepted.
+}
 ```
 
-### Assignment Operators
-
-It's a combination of assignment and some sort of caluculation.
-
-#### Addition Assignment
+We can also combine `&&` and `||` in our if statements. In those ases we usually need parentheses.
 
 ```js
-let counter = 4;
-counter += 5; // equal to -> counter = counter + 5;
-console.log(counter); // 9
+const hasCertificate = true;
+let isAvailable = true;
+let hasFSkatt = false;
+let isOldEnough = false;
+
+if (hasCertificate && (isAvailable || hasFSkatt)) {
+  // ...code to run if "hasCertificate" is true AND either "isAvailable" or "hasFSkatt".
+}
 ```
 
-#### Subtraction Assignment
+If you have a very complex condition, don't write it in directly in the if statement, create a boolean with a good name instead that contains these conditions.
 
 ```js
-let counter = 4;
-counter -= 3; // equal to -> counter = counter - 3;
-console.log(counter); // 1
+if (hasCertificate || (isAvailable && hasFSkatt) || isOldEnough) {
+  // ...code to run
+}
 ```
 
-#### Multiplication Assignment
+The above can be quite complicated to read, create a variable instead.
 
 ```js
-let counter = 4;
-counter *= 3; // equal to -> counter = counter * 3;
-console.log(counter); // 12
+const goodWorker = hasCertificate || (isAvailable && hasFSkatt) || isOldEnough;
+
+if (goodWorker) {
+  // This is easier to read, and hopefully the nameing of the variable explains what it contains in some way.
+}
 ```
 
-#### Division Assignment
-
-```js
-let counter = 4;
-counter /= 2; // equal to -> counter = counter / 2;
-console.log(counter); // 2
-```
+In order to make the code more readable you could also nest your if statements.
