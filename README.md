@@ -1,3 +1,23 @@
+# Handling input for user and If-statements
+
+<details>
+<summary>Table of contents</summary>
+
+- [Simple handling of input from user](#simple-handling-of-input-from-user)
+
+  - [Alert](#alert)
+  - [Prompt](#prompt)
+  - [Confirm](#confirm)
+  - [Good to know](#good-to-know-about-these-methods)
+
+- [If statements](#if-statements)
+  - [Comparison Operators](#comparison-operators)
+  - [Else](#else)
+  - [Else-if](#else-if)
+  - [Logical Operators](#logical-operators)
+  - [Truthy & Falsey](#truthy-and-falsey-values)
+  </details>
+
 ## Simple handling of input from user
 
 ### Alert
@@ -9,6 +29,8 @@ alert("This is an alert message! Dismiss me before the program continues.");
 
 console.log("Alert is dismissed");
 ```
+
+[Back to top](#handling-input-for-user-and-if-statements)
 
 ### Prompt
 
@@ -39,6 +61,8 @@ The prompt always returns a value to us, either a string if we actually types so
 
 FYI, everything you type as a response in a prompt will be converted to a string before it's returned.
 
+[Back to top](#handling-input-for-user-and-if-statements)
+
 ### Confirm
 
 A confirm dialog is used to ask the user for confirmatin. Usually a question or something that can be answered with yes and no. The confirm uses the options `Ok` and `Cancel` in order represent these answers. It returns a boolean, `true` if the user press `Ok` or `false` if the user press `Cancel`. Like the other methods it pauses the script until it's completed.
@@ -50,6 +74,8 @@ const isOver20 = confirm("Are you over the age of 20?");
 // Alert the answer.
 alert(`Were you older then 20? ${isOver20}`);
 ```
+
+[Back to top](#handling-input-for-user-and-if-statements)
 
 ### Good to know about these methods.
 
@@ -68,7 +94,9 @@ window.promt("...some prompt");
 window.confirm("...some confirmation text");
 ```
 
-## If-else-statements
+[Back to top](#handling-input-for-user-and-if-statements)
+
+## If-statements
 
 A statment is a lone of code that performs a certain action or task. It's like giving a command to a computer to do something specific.
 
@@ -95,6 +123,8 @@ console.log(greeting);
 ```
 
 Lastly we instruct the computer to display this greeting in the console of the browser. When you run this code, you'll see `Hello there!` in the console. This is a proper statement!
+
+[Back to top](#handling-input-for-user-and-if-statements)
 
 ### Back to if-statements
 
@@ -191,6 +221,8 @@ if (ageAsNumber >= ageRestriction) {
 
 If-statements works by checking a certain condition if it should run the code inside the codeblock or not. Remember that it **ONLY** runs the code if the condition is true. Otherwise the code block will be completely ignored.
 
+[Back to top](#handling-input-for-user-and-if-statements)
+
 ### Else
 
 Else is nothing that can be used on its own, it must alwaus be used in conjunction with an if-statment. But it gives you the opportunity to something else the first condition is false.
@@ -225,6 +257,8 @@ if (ageAsNumber >= ageRestriction) {
   alert("I am sorry, you shall not pass!");
 }
 ```
+
+[Back to top](#handling-input-for-user-and-if-statements)
 
 ### Else-if
 
@@ -267,6 +301,8 @@ if (age >= 80) {
 ```
 
 This is a good example if we want to check multiple conditions one by one, but what if we want to check serveral conditions at the same time? Then we have logical operators.
+
+[Back to top](#handling-input-for-user-and-if-statements)
 
 ### Logical Operators
 
@@ -376,3 +412,614 @@ if (goodWorker) {
 ```
 
 In order to make the code more readable you could also nest your if statements.
+
+#### `!` = `NOT (negation)`
+
+This one can be little tricky because it is similar to the comparison operator `!=`. But to explain it in an easy way, when we are using this with a condition, we are inverting that said condition. So if something i `true`, this operator will make it `false` and vice versa. We can use this specifically when we are looking for a conditions that is suppose to be false.
+
+```js
+const somethingTrue = true;
+const somethingFalse = false;
+
+if (!somethingTrue) {
+  // This codeblock wil in fact NOT run since the NOT operator inverts the value of "somethingTrue", therefor the condition is evaluated to false.
+}
+
+if (!somethingFalse) {
+  // This codeblock will run however. The NOT operator is inverting the "somethingFalse" and makes it true. The conditon passed and this codeblock runs.
+}
+```
+
+[Back to top](#handling-input-for-user-and-if-statements)
+
+### Truthy and Falsey values
+
+A value is considered `truthy` if it coerces to `true` when evaluated in a boolean context, like an if check for instance.
+
+- `Non-empty strings`: Any string with at least one character is truthy
+
+- `Numbers (except 0)`: Any number excepts 0 is truthy.
+
+- `Objects`: All objects are truthy, even empty ones.
+
+- `Arrays`: All arrays are truthy, even empty ones.
+
+- `Function`: Defined functions are truhty.
+
+```js
+// TS syntax, just go with it. This means that user can have to types of value, IUser or null.
+let user: IUser | undefined;
+
+if (user) {
+  // ...do something with the user if the user is considerd truthy, or in this case of the type IUser.
+}
+
+if ("Niklas") {
+  // ...This codeblock will run since any string with atleast one character is consederd truthy.
+}
+
+if (155) {
+  // ..also truthy, since all numbers except 0 is truthy.
+}
+```
+
+### Falsey
+
+A value is considered `falsey` if it coerces to `false` when evaluated in a boolean context, like an if check for instance.
+
+- `Empty string`: An empty string (""), or (''), or (``) is falsey.
+
+- `The number 0`: The number 0 is falsey.
+
+- `null`: The `null` value is falsey.
+
+- `undefined`: The `undefined is also falsy.
+
+- `NaN`: Not-a-number is also falsy.
+
+```js
+if ("") {
+  // Will not run since it's falsy.
+}
+
+let user;
+
+if (user) {
+  // Is falsy since we haven't assigned a value to the user variable.
+}
+```
+
+[Back to top](#handling-input-for-user-and-if-statements)
+
+<!-- JavaScript Functions -->
+
+# JavaScript Functions
+
+<details>
+<summary>Table of contents</summary>
+
+- [Functions](#functions)
+  - [Hoisting](#hoisting)
+  - [This-scope](#this-scope)
+- [Anonymous functions](#anonymous-functions)
+- [Functions with arguments](#functions-with-arguments)
+- [Functions with return value](#functions-with-return-value)
+- [Functions with both arguments and a return value](#functions-with-both-arguments-and-a-return-value)
+- [Arrow functions](#arrow-functions)
+- [Callback functions](#callback-functions)
+
+</details>
+
+### Functions
+
+Functions are powerful and versatile tools that play a crucial role in structuring code and promoting reusability. They containt a set of instructions allowing for a more modular approach to programming.
+
+A basic syntax looks like this:
+
+```js
+function greeting() {
+  // ...inside the code block is the code that belongs to the function.
+
+  console.log("Hello there!");
+}
+```
+
+We need the keyword `function`, a function name, parentheses _(which we will use later)_ and a code block with the code.
+
+The example above just creates the function and saves it. It doesn't actually runs it. We need to invoke _(call)_ if before it runs.
+
+To run a function we invoke we referencing its name along with parentheses.
+
+```js
+// This is an invocation.
+greeting();
+```
+
+[Back to top](#javascript-functions)
+
+#### Hoisting
+
+JavaScript hoists functions _(like the one example above)_ to the top of the scope during the compiliation phase. This behaviour anables us to use the functions before they are explicitly declared. Use this with catuion as it may lead to unexpected results if not understood properly. Not all functions are hoisted to the top. Only the ones that are created like the one above, like this:
+
+```js
+// These functions will be hoisted.
+function functionName() {
+  // ...code
+}
+```
+
+Proper useage of hoisting can lead to cleaner and more readable code.
+
+#### This-scope
+
+The `this` keyword in JavaScript refers to the current execution context. Understanding how `this` behaves in different scenarios is crucial for writing maintainable and resuable code. In functions, `this` can vary based on how the functions is invoked, prodviding a powerful mechanism for dynamic context binding.
+
+```js
+function showThis() {
+  console.log(this);
+}
+```
+
+- `this` in a regular function refers to the global object (e.g, `window` in a browser) or `undefined` in strict mode.
+
+- In a object method, `this` refers to the object it self that the method was called on.
+- Arrow functions do not have their own `this` context. They always inherit it from the surrounding scope.
+
+[Back to top](#javascript-functions)
+
+### Anonymous functions
+
+Anonymous functions, without a specified name, offer a concise way to define functions on-the-fly. They are particularly useful for short, one-time use cases and can be passed directly as arguments to other functions.
+
+This is the syntac for a anonymous function:
+
+```js
+const greeting = function () {
+  console.log("Hello, how are you doing?");
+};
+```
+
+These kind of functions won't be hoisted like regular functions.
+
+- Anonymous function are often used in scenarios where a functions is needed temporarily and might not be reused.
+
+- They can contribute to code readability.
+
+[Back to top](#javascript-functions)
+
+### Functions with arguments
+
+Functions can accept parameters, also knows as arguments. These arguments enable the passing of data into a function, making it adaptable to various use cases. Functions with arguments enhance code flexibility and make them suitable for a wide range of inputs.
+
+Arguments are passed inside the parentheses.
+
+```js
+function greet(name) {
+  console.log(`Hello ${name}, who are you?`);
+}
+```
+
+You can also have multiple arguments that you pass to a function.
+
+```js
+function greetAgain(firstName, lastName) {
+  console.log(`Hello ${firstName} ${lastName}, I know you!`);
+}
+```
+
+These arguments are dynamic, we can pass anything to the function. Doesn't have to be a string since we haven't specified any data type. If we don't pass in a value to any of the arguments the "value" will be undefined, so it won't break but it won't be the behaviour we want.
+
+If we have a use case where we know that we might not pass in a value, we can always utilize something called default value. It looks like this:
+
+```js
+function greet(name = "Anon") {
+  console.log(`Hello ${name}!`);
+}
+```
+
+This is also applicable on several arguments but the default values must come last in those cases.
+
+```js
+function greetAgain(firstName, lastName = "Svensson") {
+  console.log(`Hello ${firstName} ${lastName}, I know you!`);
+}
+```
+
+If we have default values that comse before the dynamic value, the order will be wrong since it is assigns from left to right.
+
+- Arguments provide a way to pass data into a function, allowing for cusomization and reuse
+
+- Functions can have multiple agruments, making them versatile and adaptable to different use cases.
+
+[Back to top](#javascript-functions)
+
+### Functions with return value
+
+Functions can return values to us by using a keyword `return`. The ability to return a value makes a function not only perfrom tasks but also produce meningful results, further enhancing their resuability in different parts of the program.
+
+```js
+function multiply(x, y) {
+  const product = x * y;
+  return product;
+
+  // This code below will not run since the return ends the function
+  console.log("Hello");
+}
+
+const product = multiply(2, 4);
+
+console.log(`The product is ${product}`); // Output: The product is 8;
+```
+
+- The `return` statement concludes the function's execution and specifies the value to be returned.
+
+[Back to top](#javascript-functions)
+
+### Functions with both arguments and a return value
+
+Functions can have both arguments and a return value. Remember, that although we can have multiple arguments, there can only be **ONE** return value.
+
+[Back to top](#javascript-functions)
+
+### Arrow functions
+
+Another mor concise syntax for writing functdions. Introduced with ES6. Arrow functions are always anonymous and can live on their own.
+
+```js
+const add = (a, b) => {
+  // Gives us more code space.
+  return a + b;
+};
+
+const sum = add(5, 6);
+console.log(sum); // 11
+```
+
+Above is the normal way to create an arrow function. In some case we can write it even shorter. We could ignore the codeblock and the return keyword if we just want to return some value quickly without doing some extra code.
+
+```js
+const add = (a, b) => a + b;
+
+const sum = add(5, 6);
+console.log(sum); // 11
+```
+
+This shortend syntax is only usable for one-liners.
+
+- Arrow functions do not have their own `this` context, they always inherit it from the surrounding scope.
+
+- They are often used for short, simple functions and in the context of functional programming.
+
+[Back to top](#javascript-functions)
+
+### Callback functions
+
+Callback functions are functions that are passed as arguments to other functions, allowing for the execution of code at a later time. They are commonly used in asynchronous operations, providing a way to handle results or errors once an operation completes.
+
+```js
+// With regular function syntax
+function fetchData(callback) {
+  setTimeout(function () {
+    const data = "Hello from callback";
+    callback(data);
+  }, 1000);
+}
+
+// With arrow function syntax in the setTimeout function
+function fetchData(callback) {
+  setTimeout(() => {
+    const data = "Hello from callback";
+    callback(data);
+  }, 1000);
+}
+
+// with arrow function syntax in both places
+const fetchData = (callback) => {
+  setTimeout(() => {
+    const data = "Hello from callback";
+    callback(data);
+  }, 1000);
+};
+
+function handleData(data) {
+  console.log(data);
+}
+
+fetchData(handleData);
+```
+
+`setTimeout` is a built-in function that executes some code after a given amount of time, in milliseconds. It takes a callback function as an argument that contains the code to be run after the given time.
+
+- Callback functions enhance the flexibility and modularity of code, especially in scenarios involving asynchronous operations.
+
+- As soon as a function is used as an argument in another function, it becomes a callback function.
+
+[Back to top](#javascript-functions)
+
+<!-- JavaScript Arrays and Loops -->
+
+# JavaScript Arrays and Loops
+
+<details>
+<summary>Table of Content</summary>
+
+- [Arrays](#arrays)
+
+  - [Create Arrays](#create-arrays)
+    - [Array Literal](#array-literal)
+    - [Keyword new](#with-the-keyword-new)
+  - [Accessing elements](#accessing-elements)
+  - [Changing values of elements](#changing-values-of-elements)
+  - [Adding Elements](#adding-elements)
+  - [Removing Elements](#removing-elements)
+  - [Multidimensional Arrays](#multidimensional-arrays)
+
+- [Loops](#loops)
+
+  - [For Loop](#for-loop)
+  - [For..of Loop (foreach)](#forof-loop-foreach)
+  - [While Loop](#while-loop)
+  - [Do..While Loop](#dowhile-loop)
+  - [For..in Loop (Objects)](#forin-loop-objects)
+
+- [Array Methods](#array-methods)
+
+</details>
+
+## Arrays
+
+Arrays are data structures used to store and organize multiple values. They are a fundamental part of any programming language and are widely used for various tasks.
+
+An array looks like this in JS
+
+```js
+// Array with numbers
+[1, 2, 3, 7, 10, 57, 4];
+
+// Array with strings
+["Niklas", "Henrik", "Erik", "Sofia"];
+
+// Array with booleans
+[true, true, false, true, false];
+```
+
+Usually we only have one data type in an array, but JS allows you to mix them as well if you find a use case for that.
+
+```js
+// Array with multiple data types
+[true, 10, "Niklas", "Erik", [1, 2, 3], {}];
+```
+
+You can also get the length of the array like this:
+
+```js
+const numbers = [1, 2, 3, 7, 10, 57, 4];
+
+const length = numbers.length;
+
+console.log(length); // 7
+```
+
+This is called an attribute on arrays, since it's not a method. It returns the lenght of the array, which means the total numbers of elements.
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Create Arrays
+
+When naming an array, always use plural names. Also we usually use the variable keyword `const` when creating arrays, and that has to do with the fact that arrays are passed by reference and not value.
+
+#### Array Literal
+
+This is the most common way to create an array. Just declare a variable and give it a value as an array.
+
+```js
+const ages = [18, 34, 67, 7, 2];
+const names = ["Henrik", "Niklas", "Erik", "Sofia"];
+```
+
+#### With the Keyword new
+
+We can also create an array with the keyword `new`. It rarely happens though.
+
+```js
+const names = new Array("Henrik", "Niklas", "Erik", "Sofia");
+```
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Accessing elements
+
+In order to acces an element inside an array you do that by requesting the index postition of the given element. What is an index? Every element in an array are always given an index position, and this position specifies where in the array you can find the element. The index position starts and **position 0**, and counts upwards from there. Forst element has index position 0, second element index position 1, and so on till the end of the array.
+
+To acces an element you use square brackets in combination with the index position.
+
+```js
+const ages = [18, 34, 67, 7, 2];
+// index  =  [0 , 1 , 2 , 3, 4]
+
+console.log(ages[2]); // 67
+console.log(ages[4]); // 2
+```
+
+There is also another way to acces elements in an array, by using the _at()_ method. This is an array method, which means all arrays has access to it. Read more here: [Array Methos](#array-methods)
+
+```js
+console.log(ages.at(2)); // 67
+console.log(ages.at(0)); // 18
+```
+
+The differences between these ways of accesing elements is that _at()_ method accepts negative values as well. And if you give a negative value it will count backwords from the end instead.
+
+```js
+const ages = [18, 34, 67, 7, 2];
+
+ages.at(-1); // 2
+ages.at(-3); // 67
+```
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Changing values of elements
+
+We can use square brackets here as well, and we use it in combination with an assignment operator `=`.
+
+```js
+const names = ["Henrik", "Niklas", "Erik", "Sofia"];
+
+consol.log(names[1]); // Niklas
+names[1] = "Peter";
+console.log(names[1]); // Peter
+console.log(names); // ["Henrik", "Peter", "Erik", "Sofia"]
+```
+
+You could also use an array method called _with()_. This method takes two arguments, the first is the index of the element we want to change, and the other is the value which we want to replace with. It also returns a new array with the changes made.
+
+This is the syntax:
+`array.with(index, value) => array`
+
+```js
+let names = ["Henrik", "Niklas", "Erik", "Sofia"];
+
+const updatedNames = names.with(0, "Anette");
+names = names.with(0, "Anette"); // Works as well, since we here update the reference of the array, but we need let keyword in that case.
+
+console.log(updatedNames[0]); // Anette
+console.log(updatedNames); // ["Anette", "Niklas", "Erik", "Sofia"]
+```
+
+With the _with()_ method, you can alse use negative indexes, it will then just count backwards for the end of the array.
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Adding Elements
+
+To add elements to your array, you usually use one of two methods. These methods are called `push()` and `unshift()`. These are array methos which means every array has access to them.
+
+`push()` works by adding an element to the end of the array. It takes in one or several arguments, and these are all added to end in the way they are ordered. It also returns the new length of the array.
+
+`array.push(element1, element2... ) => number`
+
+```js
+const cars = ["Volvo", "Volkswagen", "Ferrari", "Audi"];
+
+cars.push("Aston Martin");
+
+// If we want to know the new length, we could save that as well.
+const newLength = cars.push("BWV");
+console.log(newLength): // 6
+
+console.log(cars); // ["Volvo", "Volkswagen", "Ferrari", "Audi", "Aston Martin", "BWV"]
+```
+
+`unshift()` works in the same way as `push()` but it adds the element to the beginning of the array instead.
+
+`array.unshift(element1, element2... ) => number`
+
+```js
+const numbers = [5, 2, 7, 9, 10];
+numbers.unshift(12, 20);
+
+console.log(numbers); //[12, 20, 5, 2, 7, 9, 10]
+```
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Removing Elements
+
+Removing elements for arrays can be done in multiple way but there exists two specific methods for elements removal. They are `pop()` and `shift()`.
+
+The syntax is as follows:
+
+`array.pop() => the removed element`
+
+`array.shift() => the removed element`
+
+They don't accept any arguments, they just removes elements. `pop` works by removing the last element from the array, and `unshift` removes the first element from the array.
+
+```js
+const cities = ["Stockholm", "Göteborg", "Örebro"];
+
+cities.pop(); // We can ignore the return value
+console.log(): // ["Stockholm", "Göteborg"]
+
+const city = cities.shift();
+console.log(); //["Göteborg"]
+console.log(city); // "Stockholm"
+```
+
+[Back to top](#javascript-arrays-and-loops)
+
+### Multidimensional Arrays
+
+Arrays can exist in arrays, they are then called multidimensional arrays. Take connect4 for example, it's a 2-dimensional board, 7x6.
+
+```js
+const connect4 = [
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+];
+```
+
+Let's place some tokens, we need to access specific places in the multidimensional array. We do that by using square brackets, but we use two sets of them.
+
+```js
+connect4[5][3] = "red";
+connect4[5][4] = "yellow";
+connect4[4][3] = "red";
+connect4[3][3] = "yellow";
+
+[
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
+  [null, null, null, "Yellow", null, null, null],
+  [null, null, null, "red", null, null, null],
+  [null, null, null, "red", "yellow", null, null],
+];
+```
+
+[Back to top](#javascript-arrays-and-loops)
+
+## Loops
+
+### For Loop
+
+### For..of Loop (foreach)
+
+### While Loop
+
+### Do..While Loop
+
+### For..in Loop (Objects)
+
+## Array Methods
+
+[Array Methods in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+### concat
+
+### filter
+
+### find
+
+### findIndex
+
+### forEach
+
+### includes
+
+### indexOf
+
+### join
+
+### map
+
+### reduce
+
+### slice
+
+### splice
